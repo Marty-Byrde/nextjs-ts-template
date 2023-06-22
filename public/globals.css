@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+/*"1": "0.25rem",*/
+/*"205": "0.62rem",*/
+/*"3": "0.75rem",*/
+/*"305": "0.87rem",*/
+/*"4": "1rem",*/
+/*"405": "1.12rem",*/
+/*"6": "1.5rem",*/
+/*"10": "2.5rem"*/
+
+.h-1 {height: 0.25rem;}
+.h-2 {height: 0.5rem;}
+.h-3 {height: 0.75rem;}
+.h-4 {height: 1rem;}
+.h-5 {height: 1.25rem;}
+.h-6 {height: 1.5rem;}
+.h-7 {height: 1.75rem;}
+.h-8 {height: 2rem;}
+
+
+.h-015 {height: 0.37rem;}
+.h-025 {height: 0.62rem;}
+.h-035 {height: 0.87rem;}
+.h-045 {height: 1.12rem;}
+
+
+.h-256 {height: 16rem;}
