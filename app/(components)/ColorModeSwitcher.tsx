@@ -5,15 +5,28 @@ export default function ColorModeSwitcher({width} : {width?: number}) {
   if(!width) width = 6
   const current = () => parseCookies()?.colorMode
   const toggleMode = () => {
+    const updateCookies = (mode) => {
+      setCookie(null, "colorMode", mode, {
+        maxAge: 24 * 60 * 60 * 300, // 300 days
+        path: '/',
+        secure: false,
+        sameSite: true,
+      })
+      document.documentElement.setAttribute("data-theme", mode === "dark" ? "halloween" : "cmyk")
+      document.documentElement.classList.toggle("dark")
+    }
+
+    //# When the user first visits the site, we want to set the color mode to their preference.
+    if(!current()){
+      const userPreference = window?.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+      updateCookies(userPreference)
+      return;
+    }
+
     const newMode = current() === "dark" ? "light" : "dark";
-    setCookie(null, "colorMode", newMode, {
-      maxAge: 24 * 60 * 60 * 300, // 300 days
-      path: '/',
-      secure: true,
-      sameSite: true,
-    })
-    document.documentElement.setAttribute("data-theme", newMode === "dark" ? "halloween" : "cmyk")
-    document.documentElement.classList.toggle("dark")
+    updateCookies(newMode)
+
+
   }
 
   return (
