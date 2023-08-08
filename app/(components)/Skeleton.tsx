@@ -1,4 +1,3 @@
-import { DynamicMeasurement, FuncCompProps } from "@/typing"
 
 type SkeletonProps = {
   rounded?: string,
@@ -42,15 +41,14 @@ export function SkeletonLine(props: SkeletonLineProps) {
 
 /**
  * This function will display a skeleton that combines and some skeleton lines next to it, given as its children.
- * @param props
  * @constructor
  */
-export function SkeletonImageGroup(props: FuncCompProps) {
+export function SkeletonImageGroup({children}) {
   return <div>
     <div className="flex items-center mt-4 space-x-3">
       <SkeletonImage/>
       <div className={""}>
-        {props.children}
+        {children}
       </div>
     </div>
   </div>
