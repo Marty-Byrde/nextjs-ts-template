@@ -1,7 +1,9 @@
 import { DynamicMeasurement, FuncCompProps } from "@/typing"
 
-type SkeletonProps = Partial<DynamicMeasurement> & FuncCompProps & {
-  rounded?: string
+type SkeletonProps = {
+  rounded?: string,
+  maxWidth?: string | 'max-w-sm',
+  children?: any
 }
 
 /**
@@ -9,15 +11,11 @@ type SkeletonProps = Partial<DynamicMeasurement> & FuncCompProps & {
  * @param props
  * @constructor
  */
-export default function Skeleton(props: SkeletonProps = { rounded: "3xl", unit: "sm" }) {
-  let { unit, rounded } = props
-  let width = `max-w-sm w-full`
-
-  if (unit) width = `max-w-${unit} w-full`
-  if (!rounded) rounded = "3xl"
+export default function Skeleton(props: SkeletonProps = { rounded: "3xl", maxWidth: "max-w-sm" }) {
+  let { maxWidth, rounded } = props
 
   return (
-    <div role="status" className={`${width} h-md max-h-full h-60 p-4 border border-gray-200 rounded-${props.rounded} shadow animate-pulse md:p-6 dark:border-gray-700 bg-amber-50/20`}>
+    <div role="status" className={`${maxWidth} w-full h-md max-h-full h-60 p-4 border border-gray-200 rounded-${rounded} shadow animate-pulse md:p-6 dark:border-gray-700 bg-amber-50/20`}>
       {props.children}
     </div>
   )
@@ -25,8 +23,8 @@ export default function Skeleton(props: SkeletonProps = { rounded: "3xl", unit: 
 
 
 export type SkeletonLineProps = {
-  height?: number,
-  width?: number,
+  height?: string | 'h-2',
+  width?: string | 'w-16',
 }
 
 /**
@@ -36,12 +34,8 @@ export type SkeletonLineProps = {
  */
 export function SkeletonLine(props: SkeletonLineProps) {
   let { width, height } = props
-  if (!height) height = 2
 
-  let _width = "";  //? default max width
-  if (width) _width = `w-${width}`
-
-  return <div className={`h-${height} bg-gray-200 rounded-full dark:bg-gray-700 ${_width} my-3`}></div>
+  return <div className={`${height ?? "h-2"} bg-gray-200 rounded-full dark:bg-gray-700 ${width ?? 'w-16'} my-3`}></div>
 }
 
 
